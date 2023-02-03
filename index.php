@@ -192,7 +192,7 @@ headers:
 	accept: 'application/json',
 	'Cohere-Version': '2022-12-06',
 	'content-type': 'application/json',
-	authorization: 'Bearer GldMrLeFGNvyeDlmgZKyI2CkUADUYHOoI3Eyxret'
+	authorization: 'Bearer <API_KEY>'
 },
 processData: false,
 data: '{"inputs":["' + transcript + '"],\
