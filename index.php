@@ -15,8 +15,8 @@
 <script type="text/javascript" src="js/jquery_min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script src="js/tensorflow_min.js"></script>
-<script src="js/teachablemachine_image_min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function ()
@@ -33,35 +33,63 @@ $(document).ready(function ()
 		return false;
 	});
 });
+
+function fncDisableVideoBtn()
+{
+	document.getElementById('btnVideoStart').click();
+	document.getElementById('btnVideoStart').disabled = true;
+}
 </script>
+
+<style>
+#tblContainer
+{
+	position: absolute;
+	top: 40%;
+}
+
+
+#footer
+{
+	position:fixed;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	background-color:#000;
+	color:#FFF;
+}
+</style>
 
 </head>
 <body>
 
-<p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p>
-
-<div class="app" align="center">
-        
-<button id="start-record-btn" class="btn-large" onClick="document.getElementById('btnVideoStart').click();">Start Recognition</button>
-
- 
-<p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access to your webcam and microphone.</p>
 
 
-</div>
 
-
+<table width="100%" border="0" align="center" id="tblContainer">
+  <tr>
+    <td align="center">
+    	<button id="start-record-btn" class="btn-large" onClick="fncDisableVideoBtn()">Start Recognition</button>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+    	<p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access to your webcam and microphone.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" hidden="hidden">
+    	<button type="button" onclick="init()" id="btnVideoStart">Start</button>
+    	<br />
+    	<div id="webcam-container"></div>
+    </td>
+  </tr>
+</table>
 
 
 <!-- ========================================================================================================================================================================================================================== -->
 
-<div id="divVideo" hidden="hidden">
-    <button type="button" onclick="init()" id="btnVideoStart">Start</button>
-    
-    <div id="webcam-container"></div>
-    
-    <div id="label-container"></div>
-</div>
+
 
 
 
@@ -192,7 +220,7 @@ headers:
 	accept: 'application/json',
 	'Cohere-Version': '2022-12-06',
 	'content-type': 'application/json',
-	authorization: 'Bearer <API_KEY>'
+	authorization: 'Bearer GldMrLeFGNvyeDlmgZKyI2CkUADUYHOoI3Eyxret'
 },
 processData: false,
 data: '{"inputs":["' + transcript + '"],\
@@ -386,14 +414,11 @@ voiceSelect.onchange = function()
 
 <!-- ========================================================================================================================================================================================================================== -->
 
-<p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p>
-
+<div id="footer">
+<div>Video input processing was trained on images to detect facial expressions only for this demo. NB no data is transferred all processing is local</div>
+<hr />
+<div id="label-container"></div>
+</div>
 
 </body>
 </html>
-
-
-
-
-
-
